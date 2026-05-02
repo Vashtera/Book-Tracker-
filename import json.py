@@ -13,7 +13,10 @@ class Books:
             self.books = {}
 
     def add_book(self, author, title):
-        pass
+        if title not in self.books.values():
+            self.books[author] = title
+        else:
+            print(f"The {title} book is exist in your library")
     
     def add_read_status(self, request):
         pass
