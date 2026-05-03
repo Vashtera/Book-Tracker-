@@ -26,11 +26,11 @@ class Books:
     
     def add_read_status(self, answer):
         if answer == "Y":
-            for id, book in self.books['Unread']:
+            for id, book in enumerate(self.books['Unread']):
                 print(f"{id+1}. {book['author']}: {book['title']}")
             try: 
                 id_answer = int(input("Enter number of your book: "))
-                id_book = self.books['Unread'][id_answer]
+                id_book = self.books['Unread'][id_answer - 1]
             except ValueError:
                 print("You need to enter number!")
             for author, title in self.books.items():
