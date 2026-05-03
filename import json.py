@@ -9,7 +9,7 @@ class Books:
             with open("library.json", 'r') as file:
                 self.books = json.load(file)
         except FileNotFoundError:
-            self.books = {}
+            self.books = {'Unread' : [], 'Read' : []}
 
     def add_book(self, author: str, title: str) -> str:
         self.author = author
