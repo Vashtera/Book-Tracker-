@@ -22,12 +22,14 @@ class Books:
         if title in self.books.values('title'):
             print(f"The {title} book is exist in your library")
     
-    def add_read_status(self, request):
-        if request == "Y":
+    def add_read_status(self, answer):
+        if answer == "Y":
+            
 
 
     def show_unread_book(self):
-        pass
+        for author, title in self.books.items['Unread']:
+            print(f"{author}: {title}")
 
     def save(self):
         with open("library.json", 'w') as file:
