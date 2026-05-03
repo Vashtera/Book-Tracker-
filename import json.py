@@ -11,7 +11,7 @@ class Books:
         except FileNotFoundError:
             self.books = {}
 
-    def add_book(self, author, title):
+    def add_book(self, author: str, title: str) -> str:
         self.author = author
         self.title = title
         if title not in self.books.values('title'):
@@ -23,7 +23,7 @@ class Books:
         if self.title in self.books.values('title'):
             print(f"The {self.title} book is exist in your library")
     
-    def add_read_status(self, answer):
+    def add_read_status(self, answer: str) -> str:
         if answer == "Y":
             for id, book in enumerate(self.books['Unread']):
                 print(f"{id+1}. {book['author']}: {book['title']}")
@@ -39,11 +39,11 @@ class Books:
                     return print("The books succesfully move in Read section")
             return print("The book with this id not founded")
 
-    def show_unread_book(self):
+    def show_unread_book(self) -> str:
         for book in self.books['Unread']:
             print(f"{book['author']}: {book['title']}")
 
-    def save(self):
+    def save(self) -> None:
         with open("library.json", 'w') as file:
             json.dump(self.books, file)
 
@@ -63,8 +63,12 @@ while True:
         my_books.save()
 
     if question == '2':
-        my_books.add_read_status()
-        my_books.save()
+        clarification = str(input("Do you want change status of your book? Y/N: ")).upper()
+        if clarification == 'Y':
+            my_books.add_read_status(clarification)
+            my_books.save()
+        else:
+            print("ok, Bye")
 
     if question == '3':
         my_books.show_unread_book()
