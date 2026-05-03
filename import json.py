@@ -20,8 +20,8 @@ class Books:
             print(f"The {title} book is exist in your library")
         else:
             self.books['Unread'].append({
-                'author': author,
-                'title' : title 
+                'author': author, 
+                'title' : title
                 })
             print(f"The {title} book is added")
     
@@ -34,15 +34,19 @@ class Books:
                 id_book = self.books['Unread'][id_answer - 1]
             except ValueError:
                 print("You need to enter number!")
-            for title in self.books.items():
-                if self.title in title:
-                    title.remove(self.title)
+            for title in self.books.values():
+                if id_book in title: #Claude little helped
+                    title.remove(id_book) #Claude little helped
                     self.books['Read'].append(id_book)
                     return print("The books succesfully move in Read section")
             return print("The book with this id not founded")
-
+        
     def show_unread_book(self) -> str:
         for book in self.books['Unread']:
+            print(f"{book['author']}: {book['title']}")
+
+    def show_read_book(self) -> str:
+        for book in self.books['Read']:
             print(f"{book['author']}: {book['title']}")
 
     def save(self) -> None:
@@ -55,7 +59,7 @@ my_books.load()
 
 while True:
     question = input("Please choose what you want to do: " \
-    "1: ADD/ 2: TURN READ STATUS /3: SHOW UNREAD BOOKS: ").upper()
+    "1: ADD/ 2: TURN READ STATUS/ 3: SHOW UNREAD BOOKS/ 4: SHOW READ BOOKS: ").upper()
     print("PRESS Q for exit")
     
     if question == '1':
@@ -74,6 +78,9 @@ while True:
 
     if question == '3':
         my_books.show_unread_book()
+
+    if question == '4':
+        my_books.show_read_book()
 
     if question == 'Q':
         print('Bye!')
