@@ -2,7 +2,7 @@ import json
 
 class Books:
     def __init__(self):
-        self.books = {}
+        self.books = {'Unread' : [], 'Read' : []}
 
     def load(self) -> None:
         try:
@@ -14,14 +14,16 @@ class Books:
     def add_book(self, author: str, title: str) -> str:
         self.author = author
         self.title = title
-        if title not in self.books['Unread']['title']:
-            self.books['Unread'] = []
-        self.books['Unread'].append({
-            'author': author,
-            'title' : title 
-            })
-        if self.title in self.books['Unread']['title']:
-            print(f"The {self.title} book is exist in your library")
+        all_books = self.books['Unread'] + self.books['Read'] #Claude helped
+        titles = [book['title'] for book in all_books] #Claude helped
+        if title in titles:
+            print(f"The {title} book is exist in your library")
+        else:
+            self.books['Unread'].append({
+                'author': author,
+                'title' : title 
+                })
+            print(f"The {title} book is added")
     
     def add_read_status(self, answer: str) -> str:
         if answer == "Y":
