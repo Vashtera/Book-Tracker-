@@ -14,13 +14,13 @@ class Books:
     def add_book(self, author: str, title: str) -> str:
         self.author = author
         self.title = title
-        if title not in self.books.values('title'):
+        if title not in self.books['Unread']['title']:
             self.books['Unread'] = []
         self.books['Unread'].append({
             'author': author,
             'title' : title 
             })
-        if self.title in self.books.values('title'):
+        if self.title in self.books['Unread']['title']:
             print(f"The {self.title} book is exist in your library")
     
     def add_read_status(self, answer: str) -> str:
@@ -32,7 +32,7 @@ class Books:
                 id_book = self.books['Unread'][id_answer - 1]
             except ValueError:
                 print("You need to enter number!")
-            for author, title in self.books.items():
+            for title in self.books.items():
                 if self.title in title:
                     title.remove(self.title)
                     self.books['Read'].append(id_book)
