@@ -24,12 +24,15 @@ class Books:
     
     def add_read_status(self, answer):
         if answer == "Y":
+            for id, book in self.books['Unread']:
+                print(f"{id+1}. {book['author']}: {book['title']}")
             
 
 
+
     def show_unread_book(self):
-        for author, title in self.books.items['Unread']:
-            print(f"{author}: {title}")
+        for book in self.books['Unread']:
+            print(f"{book['author']}: {book['title']}")
 
     def save(self):
         with open("library.json", 'w') as file:
