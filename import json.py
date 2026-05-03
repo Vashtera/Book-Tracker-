@@ -53,12 +53,12 @@ my_books.load()
 
 while True:
     question = input("Please choose what you want to do: " \
-    "1: ADD/ 2: TURN READ STATUS /3: SHOW UNREAD BOOKS").upper()
+    "1: ADD/ 2: TURN READ STATUS /3: SHOW UNREAD BOOKS: ").upper()
     print("PRESS Q for exit")
     
     if question == '1':
         author = str(input("Please enter name of author: "))
-        title = float(input("Please enter the title: "))
+        title = str(input("Please enter the title: "))
         my_books.add_book(author, title)
         my_books.save()
 
