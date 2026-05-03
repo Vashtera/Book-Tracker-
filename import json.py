@@ -1,5 +1,4 @@
 import json
-import copy
 
 class Books:
     def __init__(self):
@@ -40,8 +39,6 @@ class Books:
                     return print("The books succesfully move in Read section")
             return print("The book with this id not founded")
 
-
-
     def show_unread_book(self):
         for book in self.books['Unread']:
             print(f"{book['author']}: {book['title']}")
@@ -49,3 +46,29 @@ class Books:
     def save(self):
         with open("library.json", 'w') as file:
             json.dump(self.books, file)
+
+
+my_books = Books()
+my_books.load()
+
+while True:
+    question = input("Please choose what you want to do: " \
+    "1: ADD/ 2: TURN READ STATUS /3: SHOW UNREAD BOOKS").upper()
+    print("PRESS Q for exit")
+    
+    if question == '1':
+        author = str(input("Please enter name of author: "))
+        title = float(input("Please enter the title: "))
+        my_books.add_book(author, title)
+        my_books.save()
+
+    if question == '2':
+        my_books.add_read_status()
+        my_books.save()
+
+    if question == '3':
+        my_books.show_unread_book()
+
+    if question == 'Q':
+        print('Bye!')
+        break
